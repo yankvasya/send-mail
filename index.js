@@ -14,7 +14,7 @@ app.get('/', urlencodedParser, function (req, res) {
 
 app.post('/mail', jsonParser, async (req, res) => {
     console.log(req.body)
-    const { email, phone, name } = req.body;
+    const { email, phone, name, to_mail } = req.body;
     const text =
         (process.env.MAIL_TITLE || "Сообщение с формы") +
         "\n" +
@@ -34,7 +34,7 @@ app.post('/mail', jsonParser, async (req, res) => {
         const message = await client.sendAsync({
             text: text,
             from: `form <${process.env.USER}>`,
-            to: `you <${process.env.TO}>`,
+            to: `you <${to_mail}>`,
             subject: 'Отправка формы',
         });
         console.log(message);
