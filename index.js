@@ -2,9 +2,18 @@ import { SMTPClient } from 'emailjs';
 import express from 'express'
 import * as dotenv from "dotenv";
 import bodyParser from 'body-parser'
+import cors from 'cors'
+
+const corsOption = {
+    origin: ['http://localhost:3000'],
+};
+
 dotenv.config();
 
+
 const app = express();
+app.use(cors())
+
 const jsonParser = bodyParser.json()
 const urlencodedParser = bodyParser.urlencoded({ extended: false })
 
